@@ -1,4 +1,9 @@
 <RCC>
-    <qresource prefix="StockBall">
+    <qresource prefix="/StockBall"/>
+    <qresource prefix="/icon">
+        <file alias="logo">Resources/icon/logo.ico</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="360bg">Resources/images/360bg.png</file>
     </qresource>
 </RCC>

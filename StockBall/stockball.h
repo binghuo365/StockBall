@@ -23,6 +23,8 @@ protected:
 	virtual void  mouseMoveEvent(QMouseEvent *event);
 	virtual void  mousePressEvent(QMouseEvent *event);
 	virtual void  mouseReleaseEvent(QMouseEvent *event);
+	virtual void enterEvent(QEvent *);
+	virtual void leaveEvent(QEvent *);
 	virtual void  paintEvent(QPaintEvent *);
 	virtual void  timerEvent(QTimerEvent *event);
 
@@ -39,6 +41,10 @@ private:
 	QAction *quitAction;
 	QMenu   *trayIconMenu;
 	int m_nTimerId;
+
+	int m_Result[4];
+	QColor m_Color[4];
+	QPoint m_CurrentPos;
 };
 
 #endif // STOCKBALL_H

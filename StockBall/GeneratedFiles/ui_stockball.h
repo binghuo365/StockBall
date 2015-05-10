@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -22,16 +21,12 @@ QT_BEGIN_NAMESPACE
 class Ui_StockBallClass
 {
 public:
-    QLabel *label;
 
     void setupUi(QWidget *StockBallClass)
     {
         if (StockBallClass->objectName().isEmpty())
             StockBallClass->setObjectName(QStringLiteral("StockBallClass"));
         StockBallClass->resize(600, 400);
-        label = new QLabel(StockBallClass);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 30, 551, 341));
 
         retranslateUi(StockBallClass);
 
@@ -41,7 +36,6 @@ public:
     void retranslateUi(QWidget *StockBallClass)
     {
         StockBallClass->setWindowTitle(QApplication::translate("StockBallClass", "StockBall", 0));
-        label->setText(QApplication::translate("StockBallClass", "TextLabel", 0));
     } // retranslateUi
 
 };
