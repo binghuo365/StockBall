@@ -7,6 +7,7 @@
 #include "qaction.h"
 #include "qbitmap.h"
 #include "QNetworkReply"
+#include "SubGetDataThread.h"
 
 class StockBall : public QWidget
 {
@@ -29,11 +30,10 @@ protected:
 	virtual void  timerEvent(QTimerEvent *event);
 
 public slots:
-	void replyFinished(QNetworkReply *reply);
+	void DisplayMsg(int);
 
 private:
 	Ui::StockBallClass ui;
-	QNetworkAccessManager* network_manager;
 	QPoint mouseMovePos;
 	QSystemTrayIcon *trayIcon;
 	QAction *minimizeAction;
@@ -45,6 +45,8 @@ private:
 	int m_Result[4];
 	QColor m_Color[4];
 	QPoint m_CurrentPos;
+
+	SubGetDataThread* t;
 };
 
 #endif // STOCKBALL_H

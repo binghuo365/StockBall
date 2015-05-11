@@ -10,6 +10,7 @@
 #include "QNetworkRequest"
 #include "QTextCodec"
 #include "QNetworkReply"
+#include "QMessageBox"
 #include <QtCore/qmath.h>  
 
 StockBall::StockBall(QWidget *parent)
@@ -41,7 +42,19 @@ StockBall::StockBall(QWidget *parent)
 	resize(50, 50);
 	setWindowOpacity(0.5);
 	mouseMovePos = QPoint(0, 0);
-	m_nTimerId = startTimer(1000);
+	m_nTimerId = startTimer(3000);
+
+	t = new SubGetDataThread();
+	connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
+	//执行子线程
+	t->start();
+}
+
+void StockBall::DisplayMsg(int msg)
+{
+	QString temp;
+	temp.sprintf("%d", msg);
+	QMessageBox::about(NULL, "title", temp);
 }
 
 StockBall::~StockBall()
@@ -119,21 +132,7 @@ void StockBall::paintEvent(QPaintEvent *)
 
 void StockBall::timerEvent(QTimerEvent *event)
 {
-	network_manager = new QNetworkAccessManager(this);
-	connect(network_manager, SIGNAL(finished(QNetworkReply*)),
-		this, SLOT(replyFinished(QNetworkReply*)));
-	QUrl url;
-	url.setUrl("http://hq.sinajs.cn/list=sh601006");
-	QNetworkRequest network_request;
-	network_request.setUrl(url);
-	network_manager->get(network_request);
-}
 
-void StockBall::replyFinished(QNetworkReply *reply)  //当回复结束后  
-{
-	QTextCodec *codec = QTextCodec::codecForName("GB2312");
-	QString all = codec->toUnicode(reply->readAll());
-	reply->deleteLater();
 }
 
 void StockBall::enterEvent(QEvent *)
