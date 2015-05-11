@@ -33,7 +33,7 @@ StockBall::StockBall(QWidget *parent)
 	m_Color[3] = Qt::blue;
 	memset(m_Result, 1, sizeof(m_Result));
 
-	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
 	setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
 	//QPixmap pix;
 	//pix.load(":/images/360bg");  //第三个参数为读取图片的方式
