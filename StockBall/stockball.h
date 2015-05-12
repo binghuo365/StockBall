@@ -27,7 +27,6 @@ protected:
 	virtual void enterEvent(QEvent *);
 	virtual void leaveEvent(QEvent *);
 	virtual void  paintEvent(QPaintEvent *);
-	virtual void  timerEvent(QTimerEvent *event);
 
 public slots:
 	void DisplayMsg(int);
@@ -40,7 +39,6 @@ private:
 	QAction *restoreAction;
 	QAction *quitAction;
 	QMenu   *trayIconMenu;
-	int m_nTimerId;
 
 	int m_Result[4];
 	QColor m_Color[4];

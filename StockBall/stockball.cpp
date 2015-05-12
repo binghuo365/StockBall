@@ -42,7 +42,6 @@ StockBall::StockBall(QWidget *parent)
 	resize(50, 50);
 	setWindowOpacity(0.5);
 	mouseMovePos = QPoint(0, 0);
-	m_nTimerId = startTimer(3000);
 
 	t = new SubGetDataThread();
 	connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
@@ -59,10 +58,7 @@ void StockBall::DisplayMsg(int msg)
 
 StockBall::~StockBall()
 {
-	if (m_nTimerId != 0)
-	{
-		killTimer(m_nTimerId);
-	}
+
 }
 
 void StockBall::mouseMoveEvent(QMouseEvent *event)
@@ -128,11 +124,6 @@ void StockBall::paintEvent(QPaintEvent *)
 		painter.drawText(25, 25, temp);
 		pos += angle;
 	}
-}
-
-void StockBall::timerEvent(QTimerEvent *event)
-{
-
 }
 
 void StockBall::enterEvent(QEvent *)
