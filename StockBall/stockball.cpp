@@ -19,12 +19,9 @@ StockBall::StockBall(QWidget *parent)
 	QIcon icon = QIcon(":/icon/logo");
 	trayIcon = new QSystemTrayIcon(this);
 	trayIcon->setIcon(icon);
-	trayIcon->setToolTip(tr("hello"));
-	QString titlec = tr("title");
-	QString textc = tr("hell0:text");
+	trayIcon->setToolTip(tr("360"));
 	trayIcon->show();
-	trayIcon->showMessage(titlec, textc, QSystemTrayIcon::Information, 2000);
-
+	trayIcon->showMessage(NULL, NULL, QSystemTrayIcon::Information, 2000);
 
 	ui.setupUi(this);
 	m_Color[0] = Qt::red;
@@ -83,7 +80,6 @@ void StockBall::mouseReleaseEvent(QMouseEvent *event)
 void StockBall::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
-	//painter.drawPixmap(0, 0, QPixmap(":/images/360bg"));
 	painter.setRenderHint(QPainter::Antialiasing, true);
 	int cy = 10;
 	painter.setPen(QPen(Qt::white, 1));
