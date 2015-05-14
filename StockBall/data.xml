@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='GB2312'?>
+<Root>
+    <branch type="main">
+        <node id="s_sh000001">
+            <name>上证指数</name>
+            <is_stock>0</is_stock>
+        </node>
+        <node id="s_sz399001">
+            <name>上证指数</name>
+            <is_stock>0</is_stock>
+        </node>
+        <node id="s_sh000300">
+            <name>沪深300指数</name>
+            <is_stock>0</is_stock>
+        </node>
+        <node id="s_sz399006">
+            <name>创业板指数</name>
+            <is_stock>0</is_stock>
+        </node>
+    </branch>
+
+    <branch type="favorite">
+        <node id="sh600030">
+            <name>中信证券</name>
+            <is_stock>1</is_stock>
+        </node>
+        <node id="sz000166">
+            <name>申万宏源</name>
+            <is_stock>1</is_stock>
+        </node>
+        <node id="sh601989">
+            <name>中国重工</name>
+            <is_stock>0</is_stock>
+        </node>
+        <node id="sz002024">
+            <name>苏宁云商</name>
+            <is_stock>1</is_stock>
+        </node>
+    </branch>
+</Root>
