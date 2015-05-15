@@ -96,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stockball.cpp" />
+    <ClCompile Include="StockEntity.cpp" />
     <ClCompile Include="SubGetDataThread.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_stockball.h" />
+    <ClInclude Include="StockEntity.h" />
     <CustomBuild Include="SubGetDataThread.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SubGetDataThread.h...</Message>

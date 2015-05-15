@@ -1,4 +1,5 @@
 #include "stockball.h"
+#include "StockEntity.h"
 #include <QtWidgets/QApplication>
 #include "qcoreapplication.h"
 #include <QTextCodec>  
@@ -12,6 +13,9 @@ int main(int argc, char *argv[])
 	qss.open(QFile::ReadOnly);
 	qApp->setStyleSheet(qss.readAll());
 	qss.close();
+
+	//¼ÓÔØdata
+	CStockManager::instance()->loadData();
 	StockBall w;
 	w.show();
 	return a.exec();

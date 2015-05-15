@@ -68,6 +68,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SubGetDataThread.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="StockEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="stockball.h">
@@ -86,6 +89,9 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_stockball.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StockEntity.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

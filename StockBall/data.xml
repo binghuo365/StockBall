@@ -10,7 +10,7 @@
             <is_stock>0</is_stock>
         </node>
         <node id="s_sh000300">
-            <name>沪深300指数</name>
+            <name>中小板指数</name>
             <is_stock>0</is_stock>
         </node>
         <node id="s_sz399006">
@@ -30,7 +30,7 @@
         </node>
         <node id="sh601989">
             <name>中国重工</name>
-            <is_stock>0</is_stock>
+            <is_stock>1</is_stock>
         </node>
         <node id="sz002024">
             <name>苏宁云商</name>
