@@ -16,13 +16,8 @@
 StockBall::StockBall(QWidget *parent)
 	: QWidget(parent)
 {
-	QIcon icon = QIcon(":/icon/logo");
-	trayIcon = new QSystemTrayIcon(this);
-	trayIcon->setIcon(icon);
-	trayIcon->setToolTip(tr("360"));
-	trayIcon->show();
-	trayIcon->showMessage(NULL, NULL, QSystemTrayIcon::Information, 2000);
-
+	setWindowIcon(QIcon(":/icon/logo"));
+	system_tray = new SystemTray(this);
 	ui.setupUi(this);
 	m_Color[0] = Qt::red;
 	m_Color[1] = Qt::yellow;
@@ -32,18 +27,18 @@ StockBall::StockBall(QWidget *parent)
 
 	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
 	setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
-	//QPixmap pix;
-	//pix.load(":/images/360bg");  //第三个参数为读取图片的方式
-	//resize(pix.size());
 
 	resize(50, 50);
 	setWindowOpacity(0.5);
 	mouseMovePos = QPoint(0, 0);
+	connect(system_tray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconIsActived(QSystemTrayIcon::ActivationReason)));
+	connect(system_tray, SIGNAL(showWidget()), this, SLOT(showWidget()));
 
-	t = new SubGetDataThread();
-	connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
+	system_tray->show();
+	//t = new SubGetDataThread();
+	//connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
 	//执行子线程
-	t->start();
+	//t->start();
 }
 
 void StockBall::DisplayMsg(int msg)
@@ -134,4 +129,22 @@ void StockBall::leaveEvent(QEvent *)
 	//鼠标离开窗口时是普通的指针      
 	setCursor(Qt::ArrowCursor);
 	setWindowOpacity(0.5);
+}
+
+void StockBall::iconIsActived(QSystemTrayIcon::ActivationReason reason)
+{
+	switch (reason)
+	{
+			//点击托盘图标之后松开
+		case QSystemTrayIcon::Trigger:
+			//双击托盘图标
+		case QSystemTrayIcon::DoubleClick:
+		{
+											 this->showNormal();
+											 this->raise();
+											 this->activateWindow();
+		}
+		default:
+			break;
+	}
 }

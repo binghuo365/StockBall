@@ -4,6 +4,7 @@
 #include "qcoreapplication.h"
 #include <QTextCodec>  
 #include "qfile.h"
+#include "Favorite.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,8 +16,12 @@ int main(int argc, char *argv[])
 	qss.close();
 
 	//¼ÓÔØdata
-	CStockManager::instance()->loadData();
-	StockBall w;
-	w.show();
-	return a.exec();
+	//CStockManager::instance()->loadData();
+	//StockBall w;
+	//w.show();
+	//return a.exec();
+
+	Favorite e;
+	e.show();
+	return e.exec();
 }

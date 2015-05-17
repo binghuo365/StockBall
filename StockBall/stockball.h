@@ -7,7 +7,8 @@
 #include "qaction.h"
 #include "qbitmap.h"
 #include "QNetworkReply"
-#include "SubGetDataThread.h"
+#include "system_tray.h"
+//#include "SubGetDataThread.h"
 
 class StockBall : public QWidget
 {
@@ -30,21 +31,21 @@ protected:
 
 public slots:
 	void DisplayMsg(int);
+	void iconIsActived(QSystemTrayIcon::ActivationReason reason);
 
 private:
 	Ui::StockBallClass ui;
 	QPoint mouseMovePos;
-	QSystemTrayIcon *trayIcon;
 	QAction *minimizeAction;
 	QAction *restoreAction;
 	QAction *quitAction;
-	QMenu   *trayIconMenu;
+	SystemTray *system_tray; //Õ–≈ÃœÓ
 
 	int m_Result[4];
 	QColor m_Color[4];
 	QPoint m_CurrentPos;
 
-	SubGetDataThread* t;
+	//SubGetDataThread* t;
 };
 
 #endif // STOCKBALL_H

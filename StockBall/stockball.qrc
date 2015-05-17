@@ -1,9 +1,19 @@
 <RCC>
-    <qresource prefix="/StockBall"/>
+    <qresource prefix="/StockBall">
+        <file>Resources/sysButton/min_hover.png</file>
+    </qresource>
     <qresource prefix="/icon">
         <file alias="logo">Resources/icon/logo.ico</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="360bg">Resources/images/360bg.png</file>
+    </qresource>
+    <qresource prefix="/sysButton">
+        <file alias="min">Resources/sysButton/min.png</file>
+        <file alias="close">Resources/sysButton/close.png</file>
+        <file alias="close_hover">Resources/sysButton/close_hover.png</file>
+        <file alias="close_pressed">Resources/sysButton/close_pressed.png</file>
+        <file alias="min_hover">Resources/sysButton/min_hover.png</file>
+        <file alias="min_pressed">Resources/sysButton/min_pressed.png</file>
     </qresource>
 </RCC>
