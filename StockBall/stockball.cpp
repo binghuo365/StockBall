@@ -17,7 +17,6 @@ StockBall::StockBall(QWidget *parent)
 	: QWidget(parent)
 {
 	setWindowIcon(QIcon(":/icon/logo"));
-	system_tray = new SystemTray(this);
 	ui.setupUi(this);
 	m_Color[0] = Qt::red;
 	m_Color[1] = Qt::yellow;
@@ -31,14 +30,11 @@ StockBall::StockBall(QWidget *parent)
 	resize(50, 50);
 	setWindowOpacity(0.5);
 	mouseMovePos = QPoint(0, 0);
-	connect(system_tray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconIsActived(QSystemTrayIcon::ActivationReason)));
-	connect(system_tray, SIGNAL(showWidget()), this, SLOT(showWidget()));
 
-	system_tray->show();
-	//t = new SubGetDataThread();
-	//connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
+	t = new SubGetDataThread();
+	connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
 	//执行子线程
-	//t->start();
+	t->start();
 }
 
 void StockBall::DisplayMsg(int msg)
@@ -135,14 +131,12 @@ void StockBall::iconIsActived(QSystemTrayIcon::ActivationReason reason)
 {
 	switch (reason)
 	{
-			//点击托盘图标之后松开
 		case QSystemTrayIcon::Trigger:
-			//双击托盘图标
 		case QSystemTrayIcon::DoubleClick:
 		{
-											 this->showNormal();
-											 this->raise();
-											 this->activateWindow();
+			this->showNormal();
+			this->raise();
+			this->activateWindow();
 		}
 		default:
 			break;

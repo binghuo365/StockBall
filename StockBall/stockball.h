@@ -8,7 +8,7 @@
 #include "qbitmap.h"
 #include "QNetworkReply"
 #include "system_tray.h"
-//#include "SubGetDataThread.h"
+#include "SubGetDataThread.h"
 
 class StockBall : public QWidget
 {
@@ -39,13 +39,12 @@ private:
 	QAction *minimizeAction;
 	QAction *restoreAction;
 	QAction *quitAction;
-	SystemTray *system_tray; //мпелоН
 
 	int m_Result[4];
 	QColor m_Color[4];
 	QPoint m_CurrentPos;
 
-	//SubGetDataThread* t;
+	SubGetDataThread* t;
 };
 
 #endif // STOCKBALL_H

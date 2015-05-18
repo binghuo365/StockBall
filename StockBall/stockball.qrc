@@ -16,4 +16,7 @@
         <file alias="min_hover">Resources/sysButton/min_hover.png</file>
         <file alias="min_pressed">Resources/sysButton/min_pressed.png</file>
     </qresource>
+    <qresource prefix="/qss">
+        <file alias="default">Resources/qss/default.qss</file>
+    </qresource>
 </RCC>

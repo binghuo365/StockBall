@@ -6,22 +6,33 @@
 #include "qfile.h"
 #include "Favorite.h"
 
+#include <QApplication>
+#include <QLabel>
+#include <QMainWindow>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QProgressDialog>
+#include <QDebug>
+#include <QStringListModel>
+#include <QListView>
+#include <QListWidget>
+#include <QLabel>
+#include <QStandardItem>
+#include <QTableView>
+#include <QStandardItemModel>
+#include <QHeaderView>
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
-	QFile qss(":/qss/default");
-	qss.open(QFile::ReadOnly);
-	qApp->setStyleSheet(qss.readAll());
-	qss.close();
-
 	//¼ÓÔØdata
-	//CStockManager::instance()->loadData();
-	//StockBall w;
-	//w.show();
-	//return a.exec();
+	CStockManager::instance()->loadData();
+	StockBall w;
+	w.show();
 
 	Favorite e;
 	e.show();
-	return e.exec();
+
+	return a.exec();
 }

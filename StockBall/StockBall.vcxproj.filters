@@ -125,6 +125,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_table_view.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SubGetDataThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SubGetDataThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SubGetDataThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="stockball.h">
@@ -155,6 +164,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="table_view.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SubGetDataThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
