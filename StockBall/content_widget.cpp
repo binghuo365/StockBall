@@ -11,6 +11,10 @@ ContentWidget::ContentWidget(QWidget *parent)
 	main_layout->setContentsMargins(0, 0, 0, 0);
 	this->setLayout(main_layout);
 
+
+	
+
+
 	this->init();
 }
 

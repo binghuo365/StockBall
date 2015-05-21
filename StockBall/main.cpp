@@ -26,6 +26,16 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
+	//QString qss;
+	//QFile qssFile(":/qss/default");
+	//qssFile.open(QFile::ReadOnly);
+	//if (qssFile.isOpen())
+	//{
+	//	qss = QLatin1String(qssFile.readAll());
+	//	qApp->setStyleSheet(qss);
+	//	qssFile.close();
+	//}
+
 	//¼ÓÔØdata
 	CStockManager::instance()->loadData();
 	StockBall w;
