@@ -14,13 +14,7 @@ TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent)
 	setFrameShape(QFrame::NoFrame);
 	init();
 
-	QFile qss(":/qss/default");
-	qss.open(QFile::ReadOnly);
-	QMessageBox::about(NULL, "title", qss.readAll());
-	verticalScrollBar()->setStyleSheet(qss.readAll());
-	qss.close();
-
-	/*verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
+	verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
 		"{"
 		"width:8px;"
 		"background:rgba(0,0,0,0%);"
@@ -72,7 +66,7 @@ TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent)
 		"background:rgba(0,0,0,10%);"
 		"border-radius:4px;"
 		"}"
-		);*/
+		);
 }
 
 void TableView::paintEvent(QPaintEvent *e)
