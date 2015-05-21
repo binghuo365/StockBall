@@ -53,9 +53,9 @@ void CStockManager::loadData()
 			{
 				//是指数
 				CIndex* index = new CIndex();
-				index->code = ele2.attribute("id").toStdString();
+				index->code = ele2.attribute("id");
 				index->index = j;
-				index->name = ele2.elementsByTagName("name").at(0).toElement().text().toStdString();
+				index->name = ele2.elementsByTagName("name").at(0).toElement().text();
 				_mapEntity[index->code] = index;
 				if (ele.attribute("type") == "main")
 				{
@@ -70,9 +70,9 @@ void CStockManager::loadData()
 			{
 				//股票
 				CStock* stock = new CStock();
-				stock->code = ele2.attribute("id").toStdString();
+				stock->code = ele2.attribute("id");
 				stock->index = j;
-				stock->name = ele2.elementsByTagName("name").at(0).toElement().text().toStdString();
+				stock->name = ele2.elementsByTagName("name").at(0).toElement().text();
 				_mapEntity[stock->code] = stock;
 				if (ele.attribute("type") == "favorite")
 				{
@@ -92,3 +92,5 @@ CStockManager* CStockManager::instance()
 	static CStockManager inst;
 	return &inst;
 }
+
+

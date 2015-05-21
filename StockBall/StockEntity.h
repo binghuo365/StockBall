@@ -8,9 +8,17 @@ class CEntity
 {
 
 public:
-	std::string name;
-	std::string code;
+	CEntity() : name(), code(), index(0), value(0), percent(0), change(0)
+	{}
+
+public:
+	QString name;
+	QString code;
 	int		index;
+
+	double		value;		//值
+	double		percent;	//浮动百分比
+	double		change;	//变化
 };
 
 class CStock
@@ -34,6 +42,7 @@ class CStockManager
 public:
 
 	static CStockManager* instance();
+	const std::map<QString, CEntity*>& getFavirateEntity(){ return _mapFavirateEntity; }
 
 	//加载数据
 	void loadData();
@@ -44,9 +53,9 @@ public:
 	~CStockManager(){}
 
 private:
-	std::map<std::string, CEntity*> _mapEntity;	//code:Entity 总的map
-	std::map<std::string, CEntity*>_mapMainEntity;	//悬浮球的
-	std::map<std::string, CEntity*>_mapFavirateEntity;	//面板上的
+	std::map<QString, CEntity*> _mapEntity;	//code:Entity 总的map
+	std::map<QString, CEntity*>_mapMainEntity;	//悬浮球的
+	std::map<QString, CEntity*>_mapFavirateEntity;	//面板上的
 };
 
 

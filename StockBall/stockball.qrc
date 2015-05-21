@@ -7,6 +7,13 @@
     </qresource>
     <qresource prefix="/images">
         <file alias="360bg">Resources/images/360bg.png</file>
+        <file alias="a_1.png">Resources/images/a/1.png</file>
+        <file alias="a_2.png">Resources/images/a/2.png</file>
+        <file alias="a_3.png">Resources/images/a/3.png</file>
+        <file alias="a_4.png">Resources/images/a/4.png</file>
+        <file alias="a_addpage.png">Resources/images/a/addpage.png</file>
+        <file alias="a_subpage.png">Resources/images/a/subpage.png</file>
+        <file alias="a_tiao.png">Resources/images/a/tiao.png</file>
     </qresource>
     <qresource prefix="/sysButton">
         <file alias="min">Resources/sysButton/min.png</file>

@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
 	//	qApp->setStyleSheet(qss);
 	//	qssFile.close();
 	//}
-
 	//¼ÓÔØdata
 	CStockManager::instance()->loadData();
 	StockBall w;

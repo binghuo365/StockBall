@@ -7,6 +7,7 @@
 #include "qfile.h"
 #include "QScrollBar"
 #include "QMessageBox"
+#include "StockEntity.h"
 
 TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent)
 {
@@ -39,25 +40,25 @@ TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent)
 		"QScrollBar::add-line:vertical"
 		"{"
 		"height:9px;width:8px;"
-		"border-image:url(:/images/a/3.png);"
+		"border-image:url(:/images/a_3.png);"
 		"subcontrol-position:bottom;"
 		"}"
 		"QScrollBar::sub-line:vertical"
 		"{"
 		"height:9px;width:8px;"
-		"border-image:url(:/images/a/1.png);"
+		"border-image:url(:/images/a_1.png);"
 		"subcontrol-position:top;"
 		"}"
 		"QScrollBar::add-line:vertical:hover"
 		"{"
 		"height:9px;width:8px;"
-		"border-image:url(:/images/a/4.png);"
+		"border-image:url(:/images/a_4.png);"
 		"subcontrol-position:bottom;"
 		"}"
 		"QScrollBar::sub-line:vertical:hover"
 		"{"
 		"height:9px;width:8px;"
-		"border-image:url(:/images/a/2.png);"
+		"border-image:url(:/images/a_2.png);"
 		"subcontrol-position:top;"
 		"}"
 
@@ -94,17 +95,24 @@ void TableView::init()
 	setColumnWidth(2, 62);
 	setColumnWidth(3, 61);
 	setSelectionBehavior(QAbstractItemView::SelectRows);
+	setEditTriggers(QAbstractItemView::NoEditTriggers);
 	verticalHeader()->hide();
 	horizontalHeader()->hide();
 	setShowGrid(false);
 	setStyleSheet("border:none;");
 
-	for (int i = 0; i < 30; ++i)
+	const std::map<QString, CEntity*>& map = CStockManager::instance()->getFavirateEntity();
+	int i = 0;
+	for (std::map<QString, CEntity*>::const_iterator it = map.begin(); it != map.end(); ++it, ++i)
 	{
-		student_model->setItem(i, 0, new QStandardItem(QString::fromLocal8Bit("ÉîÛÚÖ¸Êý")));
-		student_model->setItem(i, 1, new QStandardItem(QString("14672.23")));
-		student_model->setItem(i, 2, new QStandardItem(QString("-22.32")));
-		student_model->setItem(i, 3, new QStandardItem(QString("+0.089")));
+		QString temp;
+		student_model->setItem(i, 0, new QStandardItem(QString::fromUtf8(it->second->name.toLocal8Bit())));
+		temp.sprintf("%0.1lf", it->second->value);
+		student_model->setItem(i, 1, new QStandardItem(temp));
+		temp.sprintf("%0.1lf", it->second->change);
+		student_model->setItem(i, 2, new QStandardItem(temp));
+		temp.sprintf("%0.1lf%%", it->second->percent);
+		student_model->setItem(i, 3, new QStandardItem(temp));
 		setRowHeight(i, 25);
 
 		student_model->item(i, 0)->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
