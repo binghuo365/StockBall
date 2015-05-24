@@ -9,11 +9,14 @@
 #include "QMessageBox"
 #include "StockEntity.h"
 
-TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent)
+TableView::TableView(QWidget *parent /*= 0*/) : QTableView(parent), WrTimer()
 {
 	setMinimumSize(270, 560);
 	setFrameShape(QFrame::NoFrame);
-	init();
+
+	WrTimer = new QTimer(this);
+	connect(WrTimer, SIGNAL(timeout()), this, SLOT(init()), Qt::DirectConnection);
+	WrTimer->start(1000);
 
 	verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
 		"{"
@@ -107,11 +110,11 @@ void TableView::init()
 	{
 		QString temp;
 		student_model->setItem(i, 0, new QStandardItem(QString::fromUtf8(it->second->name.toLocal8Bit())));
-		temp.sprintf("%0.1lf", it->second->value);
+		temp.sprintf("%0.2lf", it->second->value);
 		student_model->setItem(i, 1, new QStandardItem(temp));
-		temp.sprintf("%0.1lf", it->second->change);
+		temp.sprintf("%0.2lf", it->second->change);
 		student_model->setItem(i, 2, new QStandardItem(temp));
-		temp.sprintf("%0.1lf%%", it->second->percent);
+		temp.sprintf("%0.2lf%%", it->second->percent);
 		student_model->setItem(i, 3, new QStandardItem(temp));
 		setRowHeight(i, 25);
 
@@ -120,7 +123,6 @@ void TableView::init()
 		student_model->item(i, 2)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 		student_model->item(i, 3)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
-		//设置单元格文本颜色，张三的数据设置为红色
 		student_model->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
 		student_model->item(i, 1)->setForeground(QBrush(QColor(255, 0, 0)));
 		student_model->item(i, 2)->setForeground(QBrush(QColor(255, 0, 0)));

@@ -93,4 +93,14 @@ CStockManager* CStockManager::instance()
 	return &inst;
 }
 
+CEntity* CStockManager::get(QString code)
+{
+	std::map<QString, CEntity*>::iterator it = _mapEntity.find(code);
+	if (it != _mapEntity.end())
+	{
+		return it->second;
+	}
+	return NULL;
+}
+
 

@@ -43,6 +43,9 @@ public:
 
 	static CStockManager* instance();
 	const std::map<QString, CEntity*>& getFavirateEntity(){ return _mapFavirateEntity; }
+	const std::map<QString, CEntity*>& getMainEntity(){ return _mapMainEntity; }
+	const std::map<QString, CEntity*>& getAllEntity(){ return _mapEntity; }
+	CEntity* get(QString code);
 
 	//¼ÓÔØÊı¾İ
 	void loadData();

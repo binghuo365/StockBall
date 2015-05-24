@@ -9,6 +9,7 @@
 #include "QNetworkReply"
 #include "system_tray.h"
 #include "SubGetDataThread.h"
+#include "QTimer"
 
 class StockBall : public QWidget
 {
@@ -32,7 +33,7 @@ protected:
 public slots:
 	void DisplayMsg(int);
 	void iconIsActived(QSystemTrayIcon::ActivationReason reason);
-
+	void timeOut();
 private:
 	Ui::StockBallClass ui;
 	QPoint mouseMovePos;
@@ -45,6 +46,8 @@ private:
 	QPoint m_CurrentPos;
 
 	SubGetDataThread* t;
+
+	QTimer *WrTimer;
 };
 
 #endif // STOCKBALL_H

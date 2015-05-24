@@ -12,6 +12,7 @@
 #include "QNetworkReply"
 #include "QMessageBox"
 #include <QtCore/qmath.h>  
+#include "StockEntity.h"
 
 StockBall::StockBall(QWidget *parent)
 	: QWidget(parent)
@@ -31,6 +32,10 @@ StockBall::StockBall(QWidget *parent)
 	setWindowOpacity(0.5);
 	mouseMovePos = QPoint(0, 0);
 
+	WrTimer = new QTimer(this);
+	connect(WrTimer, SIGNAL(timeout()), this, SLOT(timeOut()), Qt::DirectConnection);
+	WrTimer->start(1000);
+
 	t = new SubGetDataThread();
 	connect(t, SIGNAL(Signal(int)), this, SLOT(DisplayMsg(int)));
 	//执行子线程
@@ -41,7 +46,7 @@ void StockBall::DisplayMsg(int msg)
 {
 	QString temp;
 	temp.sprintf("%d", msg);
-	QMessageBox::about(NULL, "title", temp);
+	//QMessageBox::about(NULL, "title", temp);
 }
 
 StockBall::~StockBall()
@@ -70,6 +75,7 @@ void StockBall::mouseReleaseEvent(QMouseEvent *event)
 
 void StockBall::paintEvent(QPaintEvent *)
 {
+	const std::map<QString, CEntity*> mainEntity = CStockManager::instance()->getMainEntity();
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing, true);
 	int cy = 10;
@@ -77,11 +83,7 @@ void StockBall::paintEvent(QPaintEvent *)
 	const int FULL_CIRCLE = 5760;
 	const int RADIUS = 50;
 	QRect rect(0, 0, this->width(), this->height());
-	int count = 0;
-	for (int i = 0; i < 4; i++)
-	{
-		count += m_Result[i];
-	}
+	int count = mainEntity.size();
 	//如果还没有投过票，那就先画一个白色的圆形  
 	if (0 == count)
 	{
@@ -92,24 +94,29 @@ void StockBall::paintEvent(QPaintEvent *)
 
 	int pos = 0;
 	int angle;
-	for (int i = 0; i < 4; i++)
+	int i = 0;
+	for (std::map<QString, CEntity*>::const_iterator it = mainEntity.begin();
+		it != mainEntity.end(); ++it, ++i)
 	{
-		if (0 == m_Result[i])
-			continue;
+
 		painter.setBrush(m_Color[i]);
-		double persent = (double)m_Result[i] / count;
+		double persent = 1.0 / count;
 		angle = FULL_CIRCLE * persent;
 
 		//画出各个对应的扇形  
 		double abc = 3.14 * 2 * (double)(pos + angle / 2) / FULL_CIRCLE;
-		double tx =  qCos(abc) + 10 + RADIUS;
+		double tx = qCos(abc) + 10 + RADIUS;
 		double ty = -1 * qSin(abc) + 10 + RADIUS;
 		painter.drawPie(rect, pos, angle);
+
 		//在扇形上写注释（投票数和百分比）  
 		QString temp;
-		temp.sprintf("%0.1lf%%", persent * 100);
+		temp.sprintf("%0.2lf%", it->second->percent);
 		painter.drawText(25, 25, temp);
 		pos += angle;
+	}
+	for (int i = 0; i < count; i++)
+	{
 	}
 }
 
@@ -141,4 +148,9 @@ void StockBall::iconIsActived(QSystemTrayIcon::ActivationReason reason)
 		default:
 			break;
 	}
+}
+
+void StockBall::timeOut()
+{
+	update();
 }
