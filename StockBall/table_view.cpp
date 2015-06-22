@@ -123,10 +123,20 @@ void TableView::init()
 		student_model->item(i, 2)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 		student_model->item(i, 3)->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
-		student_model->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
-		student_model->item(i, 1)->setForeground(QBrush(QColor(255, 0, 0)));
-		student_model->item(i, 2)->setForeground(QBrush(QColor(255, 0, 0)));
-		student_model->item(i, 3)->setForeground(QBrush(QColor(255, 0, 0)));
+		if (it->second->change > 0)
+		{
+			student_model->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
+			student_model->item(i, 1)->setForeground(QBrush(QColor(255, 0, 0)));
+			student_model->item(i, 2)->setForeground(QBrush(QColor(255, 0, 0)));
+			student_model->item(i, 3)->setForeground(QBrush(QColor(255, 0, 0)));
+		}
+		else
+		{
+			student_model->item(i, 0)->setForeground(QBrush(QColor(0, 255, 0)));
+			student_model->item(i, 1)->setForeground(QBrush(QColor(0, 255, 0)));
+			student_model->item(i, 2)->setForeground(QBrush(QColor(0, 255, 0)));
+			student_model->item(i, 3)->setForeground(QBrush(QColor(0, 255, 0)));
+		}
 
 	}
 }

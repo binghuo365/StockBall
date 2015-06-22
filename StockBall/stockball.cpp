@@ -109,14 +109,26 @@ void StockBall::paintEvent(QPaintEvent *)
 		double ty = -1 * qSin(abc) + 10 + RADIUS;
 		painter.drawPie(rect, pos, angle);
 
-		//在扇形上写注释（投票数和百分比）  
+		//在扇形上写注释（涨幅和百分比）  
 		QString temp;
-		temp.sprintf("%0.2lf%", it->second->percent);
-		painter.drawText(25, 25, temp);
+		temp.sprintf("%0.1lf%", it->second->percent);
+		switch (i)
+		{
+		case  0:
+			painter.drawText(25, 25, temp);
+			break;
+		case 1:
+			painter.drawText(0, 25, temp);
+			break;
+		case 2:
+			painter.drawText(0, 35, temp);
+			break;
+		case 3:
+			painter.drawText(25, 35, temp);
+			break;
+		}
+		//painter.drawText(abs(25 * cos(3.1415926 / 2 * i)), 25 + 10 * sin(3.1415926 / 2 * i), temp);
 		pos += angle;
-	}
-	for (int i = 0; i < count; i++)
-	{
 	}
 }
 
